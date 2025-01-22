@@ -1,9 +1,9 @@
 # criando um rdd:
 numeros = sc.parallelize([1,2,3,4,5,6,7,8,9,10])
 
-##########################################
-# Exemplos de operacoes simples com RDDs #
-##########################################
+####################################################
+# Parte I - Exemplos de operacoes simples com RDDs #
+####################################################
 
 numeros.take(5) # retorna os 5 primeiros da ordem
 
@@ -46,3 +46,27 @@ subtrai.collect()
 cartesiano = numeros.cartesian(numeros2)
 cartesiano.collect()
 cartesiano.countByValue()
+
+####################################################
+# Parte II - Key/Value/Tuplas, map, join, subtract #
+####################################################
+
+compras = sc.parallelize([(1,200),(2,300),(3,120),(4,250),(5,78)])
+
+chaves = compras.keys()
+chaves.collect()
+
+valores = compras.values()
+valores.collect()
+
+compras.countByKey()
+
+soma = compras.mapValues(lambda soma: soma + 1)
+soma.collect()
+
+debitos = sc.parallelize([(1,20),(2,300)])
+resultado = compras.join(debitos)
+resultado.collect()
+
+semdebito = compras.subtractByKey(debitos)
+semdebito.collect()
