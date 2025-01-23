@@ -15,3 +15,6 @@ df3.select("Vendas", "Produtos").show()
 from pyspark.sql.functions import expr
 
 df3.select("Produtos", "Vendas", expr("Vendas * 0.2")).show()
+
+df3.schema # para retornar o schema do dataframe
+df3.columns
