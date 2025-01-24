@@ -29,7 +29,7 @@ despachantes.show()
 despachantes.write.format("parquet").save("/home/vboxuser/desparquet") # aqui gera um arquivo parquet
 
 # como versões mais recentes do spark impedem sobrescrita acidental de dados 
-# precisa fazer essa configuração adicionar para permitir criar a tabela no mesmo path
+# precisa fazer essa configuração adicional para permitir criar a tabela no mesmo path
 spark.conf.set("spark.sql.legacy.allowNonEmptyLocationInCTAS", "true")
 
 despachantes.write.option("path", "/home/vboxuser/desparquet").saveAsTable("despachantes_ng") # aqui gera a tabela de fato, o comando é similar ao do arquivo
